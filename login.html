@@ -1,0 +1,56 @@
+<!-- save as login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buggy Login</title>
+  <script>
+    // ❌ Deliberate reference error
+    console.log("Starting app, env:", ENVIRONMENT); // ENVIRONMENT is not defined
+
+    async function fakeApiLogin(user, pass) {
+      // ❌ Random network simulation
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (Math.random() > 0.5) {
+            reject(new Error("500 Internal Server Error")); // simulate server crash
+          } else {
+            resolve({ status: "ok", token: "abc123" });
+          }
+        }, 1000);
+      });
+    }
+
+    async function login() {
+      let userInput = document.getElementById("username_fieldd")?.value; // ❌ Wrong ID (typo)
+      let passInput = document.getElementById("password_field").value;
+
+      try {
+        // ❌ This may throw because userInput is undefined
+        if (!userInput.length) console.warn("Empty username provided!");
+
+        let response = await fakeApiLogin(userInput, passInput);
+        if (response.status === "ok") {
+          document.getElementById("message").innerText = "✅ Logged in (fake server)!";
+        }
+      } catch (err) {
+        console.error("Login failed:", err);
+        document.getElementById("message").innerText = "❌ Login Error: " + err.message;
+      }
+
+      // ❌ Another undefined variable call
+      nonExistentFunction();
+    }
+  </script>
+</head>
+<body>
+  <h2>Buggy Login Page</h2>
+  <form>
+    <!-- typo in ID: "username_fieldd" instead of "username_field" -->
+    <label>Username: <input id="username_fieldd" type="text"></label><br><br>
+    <label>Password: <input id="password_field" type="password"></label><br><br>
+    <button id="login_button" type="button" onclick="login()">Login</button>
+  </form>
+  <p id="message"></p>
+</body>
+</html>

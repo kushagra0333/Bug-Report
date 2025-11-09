@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugFiner AI Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* GLOBAL */
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, #eef2f7, #f9fafc);
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    /* CARD */
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      margin-bottom: 2.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: #334155;
+      font-weight: 600;
+      border-left: 4px solid #2563eb;
+      padding-left: 0.6rem;
+    }
+
+    /* FORM */
+    label {
+      font-weight: 500;
+      display: block;
+      margin: 0.8rem 0 0.4rem;
+      color: #374151;
+    }
+
+    input[type="url"],
+    textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+      background: #f9fafb;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      padding: 0.9rem 1.8rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37,99,235,0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 8px rgba(37,99,235,0.25);
+    }
+
+    /* REPORT + GALLERY LAYOUT */
+    .flex-layout {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .report-section {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .gallery-section {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    /* REPORT BOX */
+    .report-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-family: "Courier New", monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      color: #1e293b;
+      line-height: 1.5;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .no-report {
+      color: #6b7280;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img,
+    .gallery-grid video {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-grid img:hover,
+    .gallery-grid video:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 800px) {
+      .flex-layout {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛠 BugFiner AI Dashboard</h1>
+
+    <div class="card">
+      <h2>Run a Bug Test</h2>
+      <form method="POST">
+        <label for="bug_desc">Bug Description</label>
+        <textarea id="bug_desc" name="bug_desc" rows="3" placeholder="Describe the bug..." required></textarea>
+
+        <label for="test_url">Test URL</label>
+        <input id="test_url" type="url" name="test_url" placeholder="https://example.com" required>
+
+        <button type="submit" class="btn">🚀 Run Test</button>
+      </form>
+    </div>
+
+    <div class="flex-layout">
+      <div class="card report-section">
+        <h2>Latest Report</h2>
+        {% if report %}
+          <div class="report-box">{{ report }}</div>
+        {% else %}
+          <p class="no-report">No reports found.</p>
+        {% endif %}
+      </div>
+
+      <div class="card gallery-section">
+        <h2>Test Gallery</h2>
+        {% if gallery %}
+          <div class="gallery-grid">
+            {% for item in gallery %}
+              {% if item.type == "image" %}
+                <a href="{{ url_for('media', filename=item.filename) }}" target="_blank">
+                  <img src="{{ url_for('media', filename=item.filename) }}" alt="screenshot">
+                </a>
+              {% elif item.type == "video" %}
+                <video src="{{ url_for('media', filename=item.filename) }}" controls></video>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="no-report">No screenshots or videos found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
