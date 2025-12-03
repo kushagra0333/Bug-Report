@@ -1,0 +1,48 @@
+{
+  "test_name": "auto_test",
+  "timestamp": "2025-08-31_21-12-12",
+  "steps_human": [
+    "Step 1: open → http://127.0.0.1:8000/login.html",
+    "Step 2: fill 'user_name' → #username",
+    "Step 3: fill 'password' → #password",
+    "Step 4: click → #submit",
+    "Step 5: screenshot → ./bug_reports/login_failed_2025-08-31_21-12-12.png",
+    "Step 6: noop: Unknown action 'assertText' target '.error-message'"
+  ],
+  "step_errors": [],
+  "console_logs": [],
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.7",
+    "playwright": "unknown",
+    "node_hint": "Playwright bundles Chromium; Node not required for Python runner",
+    "ffmpeg_available": false,
+    "time": "2025-08-31T21:13:45"
+  },
+  "attachments": [
+    {
+      "kind": "screenshot",
+      "path": "./bug_reports/step_2_2025-08-31_21-12-12.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "./bug_reports/step_3_2025-08-31_21-12-12.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "./bug_reports/step_4_2025-08-31_21-12-12.png"
+    },
+    {
+      "kind": "screenshot",
+      "path": "./bug_reports/login_failed_2025-08-31_21-12-12.png"
+    },
+    {
+      "kind": "log",
+      "path": "./bug_reports/log_2025-08-31_21-12-12.txt"
+    },
+    {
+      "kind": "video",
+      "path": "C:\\Users\\Abhey Dev\\Desktop\\completd projects\\AI_bug_finder.-main\\bug_reports\\dce556fe8ace6c645a53491a0a4503fc.webm"
+    }
+  ]
+}

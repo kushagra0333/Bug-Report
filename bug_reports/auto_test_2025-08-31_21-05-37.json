@@ -1,0 +1,27 @@
+{
+  "test_name": "auto_test",
+  "timestamp": "2025-08-31_21-05-37",
+  "steps_human": [
+    "Step 1: open → http://127.0.0.1:8000/login.html"
+  ],
+  "step_errors": [],
+  "console_logs": [],
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.7",
+    "playwright": "unknown",
+    "node_hint": "Playwright bundles Chromium; Node not required for Python runner",
+    "ffmpeg_available": false,
+    "time": "2025-08-31T21:05:38"
+  },
+  "attachments": [
+    {
+      "kind": "log",
+      "path": "./bug_reports/log_2025-08-31_21-05-37.txt"
+    },
+    {
+      "kind": "video",
+      "path": "C:\\Users\\Abhey Dev\\Desktop\\completd projects\\AI_bug_finder.-main\\bug_reports\\c7b502805c7bddce3691cbbdb0029c27.webm"
+    }
+  ]
+}

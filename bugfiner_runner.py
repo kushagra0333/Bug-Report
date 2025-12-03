@@ -24,15 +24,9 @@ from playwright.async_api import async_playwright
 OUTPUT_DIR = "./bug_reports/"
 REPORT_DIR = "./bug_reports/"
 TEST_NAME_DEFAULT = "LoginButton_Disappears_FailedAttempt"
-<<<<<<< HEAD
 LOCAL_HTML_DEFAULT = "http://localhost:8000/login.html"   # change at runtime with --url
 Gemini_api_key="AIzaSyA5hnjXwU0QfBkc7JMJbQ-izK1dwX_qG8E"
 GEMINI_API_KEY = Gemini_api_key          # overridable via --gemini-key or env
-=======
-LOCAL_HTML_DEFAULT = "http://localhost:8000/login.html"
-Gemini_api_key="Enter_API_Key_here"
-GEMINI_API_KEY = Gemini_api_key
->>>>>>> 08b10d8b3fed61ccb5889993ba40c78d63cf7c8c
 VIDEO_SIZE = {"width": 1280, "height": 720}
 HEADLESS_DEFAULT = True
 RECORD_VIDEO_DEFAULT = True
@@ -688,9 +682,5 @@ async def main():
     for a in result.attachments:
         print(f"- {a.kind}: {a.path}")
 
-<<<<<<< HEAD
 if __name__ == "__main__":
     asyncio.run(main())
-=======
-
->>>>>>> 08b10d8b3fed61ccb5889993ba40c78d63cf7c8c

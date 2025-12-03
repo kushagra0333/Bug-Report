@@ -1,0 +1,36 @@
+{
+  "test_name": "LoginButton_Disappears",
+  "timestamp": "2025-08-26_11-26-54",
+  "steps_human": [
+    "Step 1: open → http://localhost:8000/login.html",
+    "Step 2: fill 'incorrect_username' → #username",
+    "Step 3: fill 'incorrect_password' → #password",
+    "Step 4: click → #login_button",
+    "Step 5: screenshot → ./Mini_projects/login_failed_2025-08-26_11-26-54.png",
+    "Step 6: noop: Unknown action 'assertElementPresent' target '#login_button'"
+  ],
+  "step_errors": [],
+  "console_logs": [],
+  "environment": {
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.11.4",
+    "playwright": "unknown",
+    "node_hint": "Playwright bundles Chromium; Node not required for Python runner",
+    "ffmpeg_available": false,
+    "time": "2025-08-26T11:27:55"
+  },
+  "attachments": [
+    {
+      "kind": "screenshot",
+      "path": "./Mini_projects/login_failed_2025-08-26_11-26-54.png"
+    },
+    {
+      "kind": "log",
+      "path": "./Mini_projects/log_2025-08-26_11-26-54.txt"
+    },
+    {
+      "kind": "video",
+      "path": "C:\\Users\\A\\OneDrive\\Desktop\\AI_bug_finder.-main\\Mini_projects\\52f0fb50e2c23fcb0369161b5cfccd88.webm"
+    }
+  ]
+}
